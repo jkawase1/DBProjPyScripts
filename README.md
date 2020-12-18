@@ -1,6 +1,6 @@
 # DB Final Project
 
-https://www.ugrad.cs.jhu.edu/~<username>/DBProjPyScripts/main.html
+https://www.ugrad.cs.jhu.edu/~username/DBProjPyScripts/main.html
 
 ```
 chmod 704 main.html 
