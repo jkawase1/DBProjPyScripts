@@ -50,7 +50,7 @@
                     <div class="col-lg-8 mx-auto">
                         <h2 class="text-white mb-4">Learn about crime in the US</h2>
                         <p class="text-white-50">
-                            General project dscription goes here.
+                            We have done all the hard work for you. 
                         </p>
                     </div>
                 </div>
@@ -65,8 +65,11 @@
                     <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="white-hands.jpg" alt="" /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
-                            <h4>Shoreline</h4>
-                            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                            <h4>Our Data</h4>
+                            <p class="text-black-50 mb-0" style="padding-bottom: 10px;">We gathered raw, public data from a variety of sources for this project. </p>
+			    <p class="text-black-50 mb-0"><a href="http://www.murderdata.org/">Supplemental Homicide Report</a></p>
+			    <p class="text-black-50 mb-0"><a href="https://data.world/murder-accountability-project/uniform-crime-report">Uniform Crime Report</a></p>
+			    <p class="text-black-50 mb-0"><a href="https://en.wikipedia.org/wiki/List_of_serial_killers_in_the_United_States">Serial Killer Datatable</a></p>
                         </div>
                     </div>
                 </div>
@@ -77,11 +80,38 @@
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    	<h4 class="text-white">Query 1</h4>
-                                    	<p class="mb-0 text-white-50">Query description or input instructions. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                                    	<hr class="d-none d-lg-block mb-0 ml-0" />
-                        	    	<form class="form-inline d-flex">
-                            	    		<input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="formID" type="text" placeholder="Enter text..." />
+                                    	<form class="form-inline d-flex">
+						<hr class="d-none d-lg-block mb-0 ml-0" style="padding-bottom: 10px;" />
+						<div class="form-row" style="padding-bottom: 10px;">
+							<p class="mb-0 text-white-50" style="padding-bottom: 10px;">What was the average number of murder victims in </p>
+							<select id="1_city" class="form-row d-flex form-control form-control-sm" style="width: 100%;">
+                                        			<option>select 1</option>
+                                                		<option>select 2</option>
+                                                		<option>select 3</option>
+                                        		</select>
+						</div>
+						<div class="form-inline" style="padding-bottom: 10px;">
+							<p class="mb-0 text-white-50">from </p>
+							<div class="form-group col-md-4">
+								<select id="1_year1" class="form-row d-flex form-control form-control-sm">
+                                                			 <option>select 1</option>
+                                               				<option>select 2</option>
+                                                 			<option>select 3</option>
+                                         			</select>
+							</div>
+						
+							<p class="mb-0 text-white-50" style="padding-left: 10px;">to </p>
+						
+							<div class="form-group col-md-4">
+								<select id="1_year2" class="form-row d-flex form-control form-control-sm">
+                                                  			<option>select 1</option>
+                                                	  		<option>select 2</option>
+                                                  			<option>select 3</option>
+                                        			</select>
+							</div>
+							
+							<p class="mb-0 text-white-50" style="padding-left: 10px;">?</p>
+						</div>
                			    		<button class="btn btn-primary mx-auto" type="submit">Submit</button>
                         	    	</form>
                                 </div>
@@ -96,12 +126,24 @@
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-left">
-                         		<h4 class="text-white">Query 2</h4>
-                                     	<p class="mb-0 text-white-50">Query description or input instructions. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                                        <hr class="d-none d-lg-block mb-0 ml-0" />
-                                        <form class="form-inline d-flex">
-                                        	<input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="formID" type="text" placeholder="Enter text..." />
-                                        	<button class="btn btn-primary mx-auto" type="submit">Submit</button>
+					<hr class="d-none d-lg-block mb-0 ml-0" style="padding-bottom: 10px;" />
+					<form class="form-inline d-flex">
+                                     		<p class="mb-0 text-white-50">What was the lowest murder clearance rate (number of solved murders / total number of murders) in the</p>
+						<div class="form-inline" style="padding-bottom: 10px;">
+							<p class="mb-0 text-white-50"> year </p>
+							<div class="form-group col-md-4">
+								<select id="2_year1" class="form-row d-flex form-control form-control-sm">
+									<option>select 1</option>
+									<option>select 2</option>
+									<option>select 3</option>
+								</select>
+							</div>
+
+							<p class="mb-0 text-white-50" style="padding-left: 50px;"> ?</p>
+						</div>
+						<div class="form-row" style="padding-top: 10px; width: 100%;">
+						<button class="btn btn-primary mx-auto" type="submit">Submit</button>
+						</div>
                                         </form>
                                 </div>
 			    </div>
