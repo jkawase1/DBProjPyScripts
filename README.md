@@ -1,6 +1,6 @@
 # DB Final Project
 
-https://www.ugrad.cs.jhu.edu/~username/DBProjPyScripts/index.html
+https://www.ugrad.cs.jhu.edu/~mboloix1/DBProjPyScripts/index.html
 
 On the Ugrad CS machine, make sure the files have the correct permissions by running:
 
