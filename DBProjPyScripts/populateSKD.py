@@ -7,8 +7,8 @@ inFilename = input("Enter CSV file name for SKR: ")
 outFilename = "SKD.sql"
 tableName = "SKD"
 tableCreation = "DROP TABLE SKD;\n" + "CREATE TABLE SKD(\n\tName VARCHAR(30) primary key," + \
-                "\n\tYearStarted INTEGER,\n\tYearEnded INTEGER,\n\tProvenVictims INTEGER," + \
-                "\n\tPossibleVictims INTEGER,\n\tStatus VARCHAR(100),\n\tNotes VARCHAR(500)\n);\n"
+                "\n\tYearStarted INTEGER,\n\tYearEnded INTEGER,\n\tProvenVictims VARCHAR(3)," + \
+                "\n\tPossibleVictims VARCHAR(4),\n\tStatusOrLocation VARCHAR(100),\n\tNotes VARCHAR(500)\n);\n"
 script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
 rel_path = "sql_outputs/" + outFilename
 abs_file_path = os.path.join(script_dir, rel_path)
@@ -31,10 +31,13 @@ with open(abs_file_path, mode='r') as csv_file:
             attributeCount = 0
             for attribute in row:
                 if attributeCount == 1:
-                    line += attribute[:4] + ", " + attribute[5:] + ", "
-                elif attributeCount == 2:
-                    line += attribute + ", "
+                    if attribute[0] == '?':
+                        attribute = "9999" + attribute[1:]
+                    var = int(attribute[:4]) + 1
+                    attribute += "-" + str(var)
+                    line += attribute[:4] + ", " + attribute[5:9] + ", "
                 else:
+                    attribute = attribute.translate({ord(c): None for c in '\''})
                     line += "'" + attribute + "', "
                 attributeCount += 1
             pline = line[:len(line) - 2]

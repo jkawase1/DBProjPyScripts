@@ -5,10 +5,10 @@ script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
 inFilename = input("Enter CSV file name for UCR: ")
 outFilename = "UCR.sql"
 tableName = "UCR"
-tableCreation = "DROP TABLE UCR;\n" + "CREATE TABLE UCR(\n\tORI VARCHAR(7) primary key," + \
-                "\n\tcityName VARCHAR(30),\n\tYear INTEGER primary key,\n\tstate VARCHAR(20)," + \
-                "\n\tNumMurders INTEGER,\n\tNumSolved INTEGER,\n\tCounty VARCHAR(50)," + \
-                "\n\tAgency VARCHAR(50)\n);\n"
+tableCreation = "DROP TABLE UCR;\n" + "CREATE TABLE UCR(\n\tORI VARCHAR(7)," + \
+                "\n\tcityName VARCHAR(30),\n\tYear INTEGER,\n\tNumMurders INTEGER," + \
+                "\n\tNumSolved INTEGER,\n\tstate VARCHAR(20),\n\tcounty VARCHAR(50)," + \
+                "\n\tAgency VARCHAR(50),\n\tprimary key(ORI, Year, state)\n);\n"
 script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
 rel_path = "sql_outputs/" + outFilename
 abs_file_path = os.path.join(script_dir, rel_path)
