@@ -10160,6 +10160,8 @@ body {
   #mainNav .navbar-brand {
     padding: 0.5rem 0;
     color: rgba(255, 255, 255, 0.5);
+    font-family: 'paint-drops';
+    font-size: xx-large;
   }
   #mainNav .nav-link {
     transition: none;
