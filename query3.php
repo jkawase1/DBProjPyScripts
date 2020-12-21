@@ -54,24 +54,22 @@ ini_set('display_errors', true);
 $Year1 = $_POST['3_year1'];
 $Year2 = $_POST['3_year2'];
 
-//printf("%s\n", $State);
-//printf("%s\n", $Start);
-//printf("%s\n", $End);
-
 echo "<h4 class=\"text-uppercase m-0\">Query 3 </h4>";
 echo "<hr class=\"my-4\" />";
 
 if ($mysqli->multi_query("CALL ClearanceRateUnder50ByCounty(".$Year1.", ".$Year2.");")) {
-	echo "<h2>Hi</h2>\n";
-	echo "<h1>weeoh</h1>";
     if ($result = $mysqli->store_result()) {
-	printf("%f\n", $result);
-        while ($myrow = $result->fetch_row()) {
-                printf("%f\n", $myrow[0]);
+        echo "<div style=\"height: 400px; overflow:auto;\">\n";
+          echo "<table border=1>\n";
+          echo "<tr><td>Cities</td></tr>\n";
+	while ($myrow = $result->fetch_row()) {
+                printf("<tr><td>%s</tr></td>\n", $myrow[0]);
             }
         }
         $result->close();
     }
+echo "</table>\n";
+echo "</div>";
 ?>
 
 				
