@@ -57,12 +57,21 @@
  
  if ($mysqli->multi_query("CALL SerialKillersByProvenVictims(".$Num.");")) {
      if ($result = $mysqli->store_result()) {
-         while ($myrow = $result->fetch_row()) {
-                 printf("%s\n", $myrow[0]);
-             }
-         }
-         $result->close();
+	if (mysqli_num_rows($result) != 0) {
+		echo "<div style=\"height: 400px; overflow:auto;\">\n";
+		echo "<table border=1>\n";
+		echo "<tr><td><b>Serial Killer Names</b></td></tr>\n";
+         	while ($myrow = $result->fetch_row()) {
+                	printf("<tr><td>%s</td></tr>\n", $myrow[0]);
+         	}
+		echo "</table>\n";
+		echo "</div>";
+	} else {
+		echo "<h5>There are no entries in the database that match this query.</h5>";
+        }
+        $result->close();
      }
+}
  ?>
 				
 				</div>

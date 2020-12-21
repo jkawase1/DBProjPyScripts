@@ -55,17 +55,23 @@
  echo "<h4 class=\"text-uppercase m-0\">Query 8 </h4>";
  echo "<hr class=\"my-4\" />";
  
- if ($mysqli->multi_query("CALL MurderClearanceRateByState('".$State."');")) {
+
+if ($mysqli->multi_query("CALL MurderClearanceRateByState('".$State."')\g")) {
+
          echo "<h2>Hi</h2>\n";
          echo "<h1>weeoh</h1>";
      if ($result = $mysqli->store_result()) {
-         printf("%f\n", $result);
+         echo "<div style=\"height: 400px; overflow:auto;\">\n";
+	echo "<table border=1>\n";
+	echo "<tr><td><b>State</b></td><td><b>Clearance Rate</b></td></tr>\n";
          while ($myrow = $result->fetch_row()) {
-                 printf("%f\n", $myrow[0]);
+                 printf("<tr><td>%s</td><td>%.2f</td></tr>\n", $myrow[0], $myrow[1]);
              }
          }
          $result->close();
      }
+echo "</table>\n";
+echo "</div>";
  ?>
 				
 				</div>

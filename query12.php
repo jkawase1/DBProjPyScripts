@@ -57,18 +57,22 @@
  
  if ($mysqli->multi_query("CALL UnsolvedMurdersByAge(".$Num.");")) {
      if ($result = $mysqli->store_result()) {
+	if (mysqli_num_rows($result) != 0) {
          echo "<div style=\"height: 400px; overflow:auto;\">\n";
          echo "<table border=1>\n";
          echo "<tr><td>City</td><td>State</td><td>Solved?</td><td>Month</td><td>Year</td><td>Weapon</td><td>VictimAge</td><td>VictimSex</td><td>Homicide</td><td>Situation</td></tr>\n";
          while ($myrow = $result->fetch_row()) {
                  printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n", 
 $myrow[2], $myrow[4], $myrow[8], $myrow[10], $myrow[9], $myrow[21], $myrow[13], $myrow[14], $myrow[11], $myrow[12]);
-             }
          }
-         $result->close();
+	echo "</table>\n";
+	echo "</div>";
+	} else {
+		echo "<h5>There are no entries in the database that match this query.</h5>";
+	}
      }
-echo "</table>\n";
-echo "</div>\n";
+         $result->close();
+}
  ?>
 				
 				</div>

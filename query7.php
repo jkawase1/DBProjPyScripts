@@ -58,7 +58,7 @@
      if ($result = $mysqli->store_result()) {
 	echo "<div style=\"height: 400px; overflow:auto;\">\n";
 	echo "<table border=1>\n";
-	echo "<tr><td>Serial Killer Names</td></tr>\n";
+	echo "<tr><td><b>Serial Killer Names</b></td></tr>\n";
 	while ($myrow = $result->fetch_row()) {
     		printf("<tr><td>%s</td></tr>\n", $myrow[0]);
      }
