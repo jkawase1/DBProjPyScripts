@@ -53,11 +53,6 @@ ini_set('display_errors', true);
 
 $isSolved = $_POST['4_isSolved'];
 
-if ($isSolved == 'solved') {
-	$isSolved = 'Yes';
-} else {
-	$isSolved = 'No';
-}
 
 //printf("%s", $isSolved);
 
@@ -65,13 +60,11 @@ echo "<h4 class=\"text-uppercase m-0\">Query 4 </h4>";
 echo "<hr class=\"my-4\" />";echo "</div>";
 
 
-if ($mysqli->multi_query("CALL ActiveSerialKillerDuringHighestNumCases('".$isSolved."')\g")) {
-	echo "<h2>Hi</h2>\n";
-	echo "<h1>weeoh</h1>";
+if ($mysqli->multi_query("CALL ActiveSerialKillerDuringHighestNumCases('".$isSolved."');")) {
     if ($result = $mysqli->store_result()) {
         echo "<div style=\"height: 400px; overflow:auto;\">\n";
         echo "<table border=1>\n";
-        echo "<tr><td>Serial Killer Names</td></tr>\n";
+        echo "<tr><td><b>Serial Killer Names</b></td></tr>\n";
 	while ($myrow = $result->fetch_row()) {
                 printf("<tr><td>%s</td></tr>\n", $myrow[0]);
             }
