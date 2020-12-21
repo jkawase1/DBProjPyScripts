@@ -6,9 +6,9 @@ script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
 inFilename = input("Enter CSV file name for SKR: ")
 outFilename = "SKD.sql"
 tableName = "SKD"
-tableCreation = "DROP TABLE SKD;\n" + "CREATE TABLE SKD(\n\tName VARCHAR(30) primary key," + \
+tableCreation = "DROP TABLE SKD;\n" + "CREATE TABLE SKD(\n\tName VARCHAR(50) primary key," + \
                 "\n\tYearStarted INTEGER,\n\tYearEnded INTEGER,\n\tProvenVictims VARCHAR(3)," + \
-                "\n\tPossibleVictims VARCHAR(4),\n\tStatusOrLocation VARCHAR(100),\n\tNotes VARCHAR(500)\n);\n"
+                "\n\tPossibleVictims VARCHAR(10),\n\tStatusOrLocation VARCHAR(150),\n\tNotes VARCHAR(500)\n);\n"
 script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
 rel_path = "sql_outputs/" + outFilename
 abs_file_path = os.path.join(script_dir, rel_path)

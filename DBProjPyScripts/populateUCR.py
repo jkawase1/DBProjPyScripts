@@ -32,6 +32,7 @@ with open(abs_file_path, mode='r') as csv_file:
                 if 1 < attributeCount < 5:
                     line += attribute + ", "
                 else:
+                    attribute = attribute.translate({ord(c): None for c in '\''})
                     line += "'" + attribute + "', "
                 attributeCount += 1
             pline = line[:len(line) - 2]
