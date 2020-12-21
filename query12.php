@@ -44,37 +44,29 @@
                                 <div class="small text-black-50">
 
 
-<?php
-include 'open.php';
-
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', true);
-// display errors
-
-$State = $_POST['1_state'];
-$Start = $_POST['1_year1'];
-$End = $_POST['1_year2'];
-
-//printf("%s\n", $State);
-//printf("%s\n", $Start);
-//printf("%s\n", $End);
-
-echo "<h4 class=\"text-uppercase m-0\">Query 1 </h4>";
-echo "<hr class=\"my-4\" />";
-
-if ($mysqli->multi_query("CALL AverageNumVictimsByState('".$State."', ".$Start.", ".$End.");")) {
-	echo "<h2>Hi</h2>\n";
-	echo "<h1>weeoh</h1>";
-    if ($result = $mysqli->store_result()) {
-	printf("%f\n", $result);
-        while ($myrow = $result->fetch_row()) {
-                printf("%f\n", $myrow[0]);
-            }
-        }
-        $result->close();
-    }
-?>
-
+ <?php
+ include 'open.php';
+ 
+ ini_set('error_reporting', E_ALL);
+ ini_set('display_errors', true);
+ 
+ $Num = $_POST['12_num'];
+ 
+ echo "<h4 class=\"text-uppercase m-0\">Query 12 </h4>";
+ echo "<hr class=\"my-4\" />";
+ 
+ if ($mysqli->multi_query("CALL UnsolvedMurdersByAge(".$Num.");")) {
+         echo "<h2>Hi</h2>\n";
+         echo "<h1>weeoh</h1>";
+     if ($result = $mysqli->store_result()) {
+         printf("%f\n", $result);
+         while ($myrow = $result->fetch_row()) {
+                 printf("%f\n", $myrow[0]);
+             }
+         }
+         $result->close();
+     }
+ ?>
 				
 				</div>
                             </div>

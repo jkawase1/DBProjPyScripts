@@ -51,18 +51,16 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 // display errors
 
-$State = $_POST['1_state'];
-$Start = $_POST['1_year1'];
-$End = $_POST['1_year2'];
+$isSolved = $_POST['4_isSolved'];
 
 //printf("%s\n", $State);
 //printf("%s\n", $Start);
 //printf("%s\n", $End);
 
-echo "<h4 class=\"text-uppercase m-0\">Query 1 </h4>";
+echo "<h4 class=\"text-uppercase m-0\">Query 4 </h4>";
 echo "<hr class=\"my-4\" />";
 
-if ($mysqli->multi_query("CALL AverageNumVictimsByState('".$State."', ".$Start.", ".$End.");")) {
+if ($mysqli->multi_query("CALL ActiveSerialKillerDuringHighestNumCases(".$isSolved.");")) {
 	echo "<h2>Hi</h2>\n";
 	echo "<h1>weeoh</h1>";
     if ($result = $mysqli->store_result()) {
