@@ -54,20 +54,28 @@ $Weapon = $_POST['5_weapon1'];
 $Gender = $_POST['5_gender1'];
 $Age = $_POST['5_age1'];
 
+//printf("%s\n", $Weapon);
+//printf("%s\n", $Gender);
+//printf("%d\n", $Age);
+
 echo "<h4 class=\"text-uppercase m-0\">Query 5 </h4>";
 echo "<hr class=\"my-4\" />";
 
-if ($mysqli->multi_query("CALL MostUnsolvedMurdersByWeaponGenderAge('".$Weapon."', ".$Gender.", ".$Age.");")) {
+if ($mysqli->multi_query("CALL MostUnsolvedMurdersByWeaponGenderAge('".$Weapon."', '".$Gender."', ".$Age.")\g")) {
 	echo "<h2>Hi</h2>\n";
 	echo "<h1>weeoh</h1>";
     if ($result = $mysqli->store_result()) {
-	printf("%f\n", $result);
+	echo "<div style=\"height: 400px; overflow:auto;\">\n";
+        echo "<table border=1>\n";
+        echo "<tr><td>City</td><td>State</td></tr>\n";
         while ($myrow = $result->fetch_row()) {
-                printf("%f\n", $myrow[0]);
+                printf("<tr><td>%s</td><td>%s</td></tr>\n", $myrow[0]);
             }
         }
         $result->close();
     }
+echo "</table>\n";
+echo "</div>";
 ?>
 
 				
