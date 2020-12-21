@@ -61,7 +61,7 @@ if ($mysqli->multi_query("CALL ClearanceRateUnder50ByCounty(".$Year1.", ".$Year2
     if ($result = $mysqli->store_result()) {
         echo "<div style=\"height: 400px; overflow:auto;\">\n";
           echo "<table border=1>\n";
-          echo "<tr><td>Cities</td></tr>\n";
+          echo "<tr><td><b>Cities</b></td></tr>\n";
 	while ($myrow = $result->fetch_row()) {
                 printf("<tr><td>%s</tr></td>\n", $myrow[0]);
             }
