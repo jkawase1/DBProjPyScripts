@@ -6,7 +6,7 @@ inFilename = input("Enter CSV file name for SHR: ")
 outFilename = "SHR.sql"
 tableName = "SHR"
 tableCreation = "DROP TABLE SHR;\n" + "CREATE TABLE SHR(\n\tIDNUM INTEGER primary key,\n\tID VARCHAR(20)," + \
-                "\n\tCity VARCHAR(30),\n\tORI VARCHAR(10),\n\tState VARCHAR(20),\n\tAgency VARCHAR(50)," + \
+                "\n\tCity VARCHAR(50),\n\tORI VARCHAR(10),\n\tState VARCHAR(20),\n\tAgency VARCHAR(50)," + \
                 "\n\tAgentType VARCHAR(50),\n\tSource VARCHAR(10),\n\tSolved VARCHAR(3),\n\tYear INTEGER," + \
                 "\n\tMonth VARCHAR(10),\n\tHomicide VARCHAR(100),\n\tSituation VARCHAR(100),\n\tVictimAge INTEGER," + \
                 "\n\tVictimSex VARCHAR(20),\n\tVictimRace VARCHAR(50),\n\tVictimEthnicity VARCHAR(50)," + \
@@ -41,6 +41,7 @@ with open(abs_file_path, mode='r') as csv_file:
                 elif attributeCount == 2:
                     temp = attribute.split(", ")
                     attribute = temp[0]
+                    attribute = attribute.translate({ord(c): None for c in '\''})
                     line += "'" + attribute + "', "
                 elif attributeCount == 9 or attributeCount == 16 or attributeCount == 20:
                     line += attribute + ", "
