@@ -41,10 +41,41 @@
 			<div class="mb-3 mb-md-0 w-100">
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
-                                <h4 class="text-uppercase m-0">Some text...</h4>
-                                <hr class="my-4" />
                                 <div class="small text-black-50">
-					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
+<?php
+include 'open.php';
+
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
+// display errors
+
+$State = $_POST['1_state'];
+$Start = $_POST['1_year1'];
+$End = $_POST['1_year2'];
+
+//printf("%s\n", $State);
+//printf("%s\n", $Start);
+//printf("%s\n", $End);
+
+echo "<h4 class=\"text-uppercase m-0\">Query 1 </h4>";
+echo "<hr class=\"my-4\" />";
+
+if ($mysqli->multi_query("CALL AverageNumVictimsByState('".$State."', ".$Start.", ".$End.");")) {
+	echo "<h2>Hi</h2>\n";
+	echo "<h1>weeoh</h1>";
+    if ($result = $mysqli->store_result()) {
+	printf("%f\n", $result);
+        while ($myrow = $result->fetch_row()) {
+                printf("%f\n", $myrow[0]);
+            }
+        }
+        $result->close();
+    }
+?>
+
+				
 				</div>
                             </div>
                         </div>
