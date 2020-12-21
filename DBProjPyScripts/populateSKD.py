@@ -7,7 +7,7 @@ inFilename = input("Enter CSV file name for SKR: ")
 outFilename = "SKD.sql"
 tableName = "SKD"
 tableCreation = "DROP TABLE SKD;\n" + "CREATE TABLE SKD(\n\tName VARCHAR(50) primary key," + \
-                "\n\tYearStarted INTEGER,\n\tYearEnded INTEGER,\n\tProvenVictims VARCHAR(3)," + \
+                "\n\tYearStarted INTEGER,\n\tYearEnded INTEGER,\n\tProvenVictims INTEGER," + \
                 "\n\tPossibleVictims VARCHAR(10),\n\tStatusOrLocation VARCHAR(150),\n\tNotes VARCHAR(500)\n);\n"
 script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
 rel_path = "sql_outputs/" + outFilename
@@ -36,6 +36,10 @@ with open(abs_file_path, mode='r') as csv_file:
                     var = int(attribute[:4]) + 1
                     attribute += "-" + str(var)
                     line += attribute[:4] + ", " + attribute[5:9] + ", "
+                elif attributeCount == 2:
+                    if attribute == '?':
+                        attribute = '0'
+                    line += attribute + ", "
                 else:
                     attribute = attribute.translate({ord(c): None for c in '\''})
                     line += "'" + attribute + "', "

@@ -60,7 +60,7 @@ $isSolved = $_POST['4_isSolved'];
 echo "<h4 class=\"text-uppercase m-0\">Query 4 </h4>";
 echo "<hr class=\"my-4\" />";
 
-if ($mysqli->multi_query("CALL ActiveSerialKillerDuringHighestNumCases(".$isSolved.");")) {
+if ($mysqli->multi_query("CALL ActiveSerialKillerDuringHighestNumCases('".$isSolved."');")) {
 	echo "<h2>Hi</h2>\n";
 	echo "<h1>weeoh</h1>";
     if ($result = $mysqli->store_result()) {

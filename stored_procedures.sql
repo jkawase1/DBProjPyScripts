@@ -33,8 +33,15 @@ END //
 DROP PROCEDURE IF EXISTS LowestClearanceRateByYear;
 CREATE PROCEDURE LowestClearanceRateByYear(IN year INTEGER)
 BEGIN
-    SELECT S.county, min(S.clRate)
-    FROM (SELECT county, NumSolved/NumMurders as clRate FROM UCR WHERE Year = year) AS S;
+    SELECT DISTINCT S.county AS County, S.clRate
+    FROM (
+        SELECT county, NumSolved/NumMurders as clRate 
+        FROM UCR 
+        WHERE Year = year) AS S
+    WHERE S.clRate = (
+        SELECT MIN(NumSolved/NumMurders)
+        FROM UCR 
+        WHERE Year = year);
 END //
 
 /*Query 3*/
@@ -55,19 +62,39 @@ END //
 
 /*Query 4*/
 DROP PROCEDURE IF EXISTS ActiveSerialKillerDuringHighestNumCases;
-CREATE PROCEDURE ActiveSerialKillerDuringHighestNumCases(IN solved VARCHAR(3))
+CREATE PROCEDURE ActiveSerialKillerDuringHighestNumCases(IN solved VARCHAR(8))
 BEGIN
-    IF (solved = 'Yes') THEN
+    IF (solved = 'solved') THEN
         SELECT SKD.Name
-        FROM SKD, (SELECT Year, NumSolved
-                   FROM UCR
-                   WHERE NumUnsolved = (SELECT max(NumSolved) FROM UCR)) AS S
+        FROM SKD, (
+            SELECT G.Year
+            FROM (
+                SELECT Year, sum(NumSolved) as TotSolved
+                FROM UCR
+                GROUP BY Year) AS G
+            WHERE G.TotSolved = (
+                SELECT max(R.TotSolved) 
+                FROM (
+                    SELECT sum(NumSolved) as TotSolved
+                    FROM UCR
+                    GROUP BY Year) AS R)
+        ) AS S
         WHERE S.Year BETWEEN SKD.YearStarted AND SKD.YearEnded;
     ELSE
         SELECT SKD.Name
-        FROM SKD, (SELECT Year, NumMurders-NumSolvedMurder AS NumUnsolvedMurders
-                   FROM UCR
-                   WHERE NumUnsolvedMurders = (SELECT max(NumMurders - NumSolvedMurder) FROM UCR)) AS S
+        FROM SKD, (
+            SELECT G.Year
+            FROM (
+                SELECT Year, sum(NumMurders)-sum(NumSolved) AS NumUnsolvedMurders
+                FROM UCR
+                GROUP BY Year) AS G
+            WHERE G.NumUnsolvedMurders = (
+                SELECT max(T.NumUnsolvedMurders)
+                FROM (
+                    SELECT sum(numMurders)-sum(NumSolved) AS NumUnsolvedMurders 
+                    FROM UCR 
+                    GROUP BY Year) AS T)
+        ) AS S
         WHERE S.Year BETWEEN SKD.YearStarted AND SKD.YearEnded;
     END IF;
 END //
@@ -80,15 +107,14 @@ BEGIN
     FROM (
         SELECT City, State, count(Weapon) as numWeaponCases
         FROM SHR
-        WHERE Weapon = weapon AND Solved = “No” AND VictimSex = gender AND VictmAge < age
-        GROUP BY City, State) AS S WHERE S.numWeaponCases = (
-            SELECT max(T.totWeapon)
-            FROM (
-                SELECT City, State, count(Weapon) as totWeapon
-                FROM SHR
-                WHERE Weapon = murderWeapon AND Solved = “No” AND VictimSex = gender AND VictmAge < age
-                GROUP BY City, State) as T
-            );
+        WHERE Weapon = weapon AND Solved = 'No' AND VictimSex = gender AND VictimAge < age
+        GROUP BY City, State) AS S
+    WHERE S.numWeaponCases = (SELECT MAX(T.numWeaponCases)
+        FROM (
+            SELECT City, State, count(Weapon) as numWeaponCases
+            FROM SHR
+            WHERE Weapon = weapon AND Solved = 'No' AND VictimSex = gender AND VictimAge < age
+            GROUP BY City, State) AS T);
 END //
 
 /*Query 6*/
@@ -108,20 +134,6 @@ BEGIN
                 GROUP BY Agency, Weapon) AS T
             WHERE T.WeaponCount >= numWeaponCases AND T.Agency = S.Agency)
     );
-    /*
-    SELECT S.Agency FROM SHR AS S
-    WHERE NOT EXISTS (
-        SELECT Weapon
-        FROM AllWeapons
-        WHERE Weapon NOT IN (
-            SELECT R.Weapon
-            FROM SHR AS R, (
-                SELECT City, State, Weapon, count(Weapon) as WeaponCount
-                FROM SHR
-                GROUP BY City, State) as T
-            WHERE R.City = S.City AND R.State = S.State AND R.Agency = S.Agency AND T.City = R.City AND T.State = R.State
-              AND T.weaponCount >= NumWeaponCases AND T.Weapon = R.Weapon)
-        );*/
 END //
 
 #General Queries
@@ -138,7 +150,7 @@ END //
 DROP PROCEDURE IF EXISTS MurderClearanceRateByState;
 CREATE PROCEDURE MurderClearanceRateByState(IN stateName VARCHAR(50))
 BEGIN
-    SELECT sum(NumMurders)/sum(NumSolved) AS ClearanceRate
+    SELECT sum(NumSolved)/sum(NumMurders) AS ClearanceRate
     FROM UCR
     WHERE state = stateName
     GROUP BY state;
@@ -146,11 +158,11 @@ END //
 
 /*Query 9*/
 DROP PROCEDURE IF EXISTS MurderByWeapon;
-CREATE PROCEDURE MurderByWeapon(IN murderWeapon VARCHAR(20))
+CREATE PROCEDURE MurderByWeapon(IN murderWeapon VARCHAR(50))
 BEGIN
     SELECT *
-    FROM SHR
-    WHERE Weapon = murderWeapon;
+    FROM SHR AS S
+    WHERE S.Weapon = murderWeapon;
 END //
 
 /*Query 10*/

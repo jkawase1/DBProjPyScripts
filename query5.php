@@ -57,7 +57,7 @@ $Age = $_POST['5_age1'];
 echo "<h4 class=\"text-uppercase m-0\">Query 5 </h4>";
 echo "<hr class=\"my-4\" />";
 
-if ($mysqli->multi_query("CALL MostUnsolvedMurdersByWeaponGenderAge('".$Weapon."', ".$Gender.", ".$Age.");")) {
+if ($mysqli->multi_query("CALL MostUnsolvedMurdersByWeaponGenderAge('".$Weapon."', '".$Gender."', ".$Age.");")) {
 	echo "<h2>Hi</h2>\n";
 	echo "<h1>weeoh</h1>";
     if ($result = $mysqli->store_result()) {
