@@ -62,7 +62,7 @@ if ($isSolved == 'solved') {
 //printf("%s", $isSolved);
 
 echo "<h4 class=\"text-uppercase m-0\">Query 4 </h4>";
-echo "<hr class=\"my-4\" />";
+echo "<hr class=\"my-4\" />";echo "</div>";
 
 if ($mysqli->multi_query("CALL ActiveSerialKillerDuringHighestNumCases('".$isSolved."')\g")) {
 	echo "<h2>Hi</h2>\n";
