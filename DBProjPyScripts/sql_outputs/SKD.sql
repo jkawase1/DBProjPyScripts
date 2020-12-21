@@ -1,11 +1,11 @@
 DROP TABLE SKD;
 CREATE TABLE SKD(
-	Name VARCHAR(30) primary key,
+	Name VARCHAR(50) primary key,
 	YearStarted INTEGER,
 	YearEnded INTEGER,
 	ProvenVictims VARCHAR(3),
-	PossibleVictims VARCHAR(4),
-	StatusOrLocation VARCHAR(100),
+	PossibleVictims VARCHAR(10),
+	StatusOrLocation VARCHAR(150),
 	Notes VARCHAR(500)
 );
 
@@ -205,7 +205,7 @@ INSERT INTO SKD VALUES ('Jablonski, Phillip Carl', 1978, 1991, '5', '5', 'Died i
 INSERT INTO SKD VALUES ('Jackson, Calvin', 1973, 1974, '9', '9', 'Sentenced to life imprisonment', 'Murdered and robbed women in Manhattans East Side, abusing their corpses post-mortem');
 INSERT INTO SKD VALUES ('Jackson, Charles', 1975, 1982, '8', '8+', 'Died in prison', 'Known as the "East Bay Slayer"');
 INSERT INTO SKD VALUES ('Jesperson, Keith Hunter', 1990, 1995, '8', '8+', 'Sentenced to life imprisonment', 'Known as the "Happy Face Killer"');
-INSERT INTO SKD VALUES ('Johnson, John', 1843, ?-18, '0', '300+', 'Died 1900', 'Known as "Liver-Eating Johnson"; mountain man who allegedly ate the livers of Crows hed slain');
+INSERT INTO SKD VALUES ('Johnson, John', 1843, 9999, '0', '300+', 'Died 1900', 'Known as "Liver-Eating Johnson"; mountain man who allegedly ate the livers of Crows hed slain');
 INSERT INTO SKD VALUES ('Johnson, Martha Ann', 1977, 1982, '3', '4', 'Sentenced to death; commuted to life', 'Georgia woman convicted of smothering to death three of her children between 1977 and 1982');
 INSERT INTO SKD VALUES ('Johnson, Matthew Steven', 2000, 2001, '3', '5', 'Sentenced to life imprisonment', 'Preyed on disenfranchised young women in Connecticut');
 INSERT INTO SKD VALUES ('Johnson, Milton', 1983, 1984, '10', '10+', 'Sentenced to death, commuted to life imprisonment', 'Victims included two deputy sheriffs');
