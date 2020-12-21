@@ -49,24 +49,17 @@ include 'open.php';
 
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
-// display errors
 
 $Year = $_POST['2_year'];
-
-//printf("%s\n", $State);
-//printf("%s\n", $Start);
-//printf("%s\n", $End);
 
 echo "<h4 class=\"text-uppercase m-0\">Query 2 </h4>";
 echo "<hr class=\"my-4\" />";
 
 if ($mysqli->multi_query("CALL LowestClearanceRateByYear(".$Year.");")) {
-	echo "<h2>Hi</h2>\n";
-	echo "<h1>weeoh</h1>";
     if ($result = $mysqli->store_result()) {
-	printf("%f\n", $result);
+	//printf("%s\n", $result);
         while ($myrow = $result->fetch_row()) {
-                printf("%f\n", $myrow[0]);
+                printf("%s\n", $myrow[0]);
             }
         }
         $result->close();
