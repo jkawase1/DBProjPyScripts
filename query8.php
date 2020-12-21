@@ -58,7 +58,7 @@
 
 if ($mysqli->multi_query("CALL MurderClearanceRateByState('".$State."');")) {
      if ($result = $mysqli->store_result()) {
-         echo "<div style=\"height: 100px; overflow:auto;\">\n";
+         echo "<div style=\"height: 400px; overflow:auto;\">\n";
 	echo "<table border=1>\n";
 	echo "<tr><td><b>City</b></td><td><b>State</b></td><td><b>Year</b></td><td><b>Num Murders</b></td><td><b>Num Solved</b></td><td><b>County</b></td><td><b>Agency</b></td></tr>\n";
          while ($myrow = $result->fetch_row()) {

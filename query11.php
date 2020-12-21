@@ -58,9 +58,14 @@
  if ($mysqli->multi_query("CALL LessThanMurdersByState(".$Num.");")) {
      if ($result = $mysqli->store_result()) {
 	if (mysqli_num_rows($result) != 0) {
-	echo "<div style=\"height: 400px; overflow:auto;\">\n";
+	if (mysqli_num_rows($result) < 16) {
+		echo "<div style=\"overflow:auto;\">\n";
+	} else {
+		echo "<div style=\"height: 400px; overflow:auto;\">\n";
+	}
+	
         echo "<table border=1>\n";
-        echo "<tr><td>States</td></tr>\n";
+        echo "<tr><td><b>States</b></td></tr>\n";
          while ($myrow = $result->fetch_row()) {
                  printf("<tr><td>%s</td></tr>\n", $myrow[0]);
          }

@@ -60,7 +60,7 @@
 	if (mysqli_num_rows($result) != 0) {
          echo "<div style=\"height: 400px; overflow:auto;\">\n";
          echo "<table border=1>\n";
-         echo "<tr><td>City</td><td>State</td><td>Solved?</td><td>Month</td><td>Year</td><td>Weapon</td><td>VictimAge</td><td>VictimSex</td><td>Homicide</td><td>Situation</td></tr>\n";
+         echo "<tr><td><b>City</b></td><td><b>State</b></td><td><b>Solved?</b></td><td><b>Month</b></td><td><b>Year</b></td><td><b>Weapon</b></td><td><b>VictimAge</b></td><td><b>VictimSex</b></td><td><b>Homicide</b></td><td><b>Situation</b></td></tr>\n";
          while ($myrow = $result->fetch_row()) {
                  printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n", 
 $myrow[2], $myrow[4], $myrow[8], $myrow[10], $myrow[9], $myrow[21], $myrow[13], $myrow[14], $myrow[11], $myrow[12]);
