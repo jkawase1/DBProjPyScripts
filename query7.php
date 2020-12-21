@@ -50,23 +50,39 @@
  ini_set('display_errors', true);
  
  $Year = $_POST['7_year1'];
+
+if ($Year > 2020) {
+	$Year = 0;
+}
  
  echo "<h4 class=\"text-uppercase m-0\">Query 7 </h4>";
  echo "<hr class=\"my-4\" />";
  
  if ($mysqli->multi_query("CALL SerialKillersActiveByYear(".$Year.");")) {
      if ($result = $mysqli->store_result()) {
-	echo "<div style=\"height: 400px; overflow:auto;\">\n";
+	if (mysqli_num_rows($result) != 0 || $Year == '9999') {
+	if (mysqli_num_rows($result) <= 4) {
+		echo "<div style=\"height: 130px; overflow:auto;\">\n";	
+	} else {
+		echo "<div style=\"height: 400px; overflow:auto;\">\n";
+	}
 	echo "<table border=1>\n";
-	echo "<tr><td><b>Serial Killer Names</b></td></tr>\n";
+	echo "<tr><td><b>Serial Killer Name</b></td><td><b>Year Started</b></td><td><b>Year Ended</b></td><td><b>Proven Victims</b></td><td><b>Possible Victims</b></td><td><b>Status/Location</b></td><td><b>Notes</b></td></tr>\n";
 	while ($myrow = $result->fetch_row()) {
-    		printf("<tr><td>%s</td></tr>\n", $myrow[0]);
-     }
-}
+		$YearEnd = $myrow[2];
+		if ($YearEnd == '9999') {
+			$YearEnd = 'Unknown';
+		}
+    		printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n", $myrow[0], $myrow[1], $YearEnd, $myrow[3], $myrow[4], $myrow[5], $myrow[6]);
+     	}
+	echo "</table>\n";
+	echo "</div>";
+	} else {
+		echo "<h5>There are no entries in the database that match this query.</h5>";
+	}
+	}
 $result->close();
 }
-echo "</table>\n";
-echo "</div>";
  ?>
 
 				
