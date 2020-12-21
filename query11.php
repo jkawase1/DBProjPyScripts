@@ -56,16 +56,18 @@
  echo "<hr class=\"my-4\" />";
  
  if ($mysqli->multi_query("CALL LessThanMurdersByState(".$Num.");")) {
-         echo "<h2>Hi</h2>\n";
-         echo "<h1>weeoh</h1>";
      if ($result = $mysqli->store_result()) {
-         printf("%f\n", $result);
+	echo "<div style=\"height: 400px; overflow:auto;\">\n";
+          echo "<table border=1>\n";
+          echo "<tr><td>States</td></tr>\n";
          while ($myrow = $result->fetch_row()) {
-                 printf("%f\n", $myrow[0]);
+                 printf("<tr><td>%s</td></tr>\n", $myrow[0]);
              }
          }
          $result->close();
      }
+echo "</table>\n";
+echo "</div>";
  ?>
 				
 				</div>

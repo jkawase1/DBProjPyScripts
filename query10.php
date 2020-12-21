@@ -56,12 +56,9 @@
  echo "<hr class=\"my-4\" />";
  
  if ($mysqli->multi_query("CALL SerialKillersByProvenVictims(".$Num.");")) {
-         echo "<h2>Hi</h2>\n";
-         echo "<h1>weeoh</h1>";
      if ($result = $mysqli->store_result()) {
-         printf("%f\n", $result);
          while ($myrow = $result->fetch_row()) {
-                 printf("%f\n", $myrow[0]);
+                 printf("%s\n", $myrow[0]);
              }
          }
          $result->close();
