@@ -56,16 +56,19 @@
  echo "<hr class=\"my-4\" />";
  
  if ($mysqli->multi_query("CALL UnsolvedMurdersByAge(".$Num.");")) {
-         echo "<h2>Hi</h2>\n";
-         echo "<h1>weeoh</h1>";
      if ($result = $mysqli->store_result()) {
-         printf("%f\n", $result);
+         echo "<div style=\"height: 400px; overflow:auto;\">\n";
+         echo "<table border=1>\n";
+         echo "<tr><td>City</td><td>State</td><td>Solved?</td><td>Month</td><td>Year</td><td>Weapon</td><td>VictimAge</td><td>VictimSex</td><td>Homicide</td><td>Situation</td></tr>\n";
          while ($myrow = $result->fetch_row()) {
-                 printf("%f\n", $myrow[0]);
+                 printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n", 
+$myrow[2], $myrow[4], $myrow[8], $myrow[10], $myrow[9], $myrow[21], $myrow[13], $myrow[14], $myrow[11], $myrow[12]);
              }
          }
          $result->close();
      }
+echo "</table>\n";
+echo "</div>\n";
  ?>
 				
 				</div>
