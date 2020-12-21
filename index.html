@@ -679,7 +679,7 @@
                                     <form class="d-flex" action="query7.php" method="post">
                                         <div class="form-row">
                                                 <label for="input_gen">Show me all serial killer data during the year ...</label>
-						<input class="form-control form-control-sm flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="input_gen" type="text" name="7_year1" placeholder="Enter a year..."/>
+						<input class="form-control form-control-sm flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="input_gen" type="text" maxlength="4" name="7_year1" placeholder="Enter a year..."/>
                                             <button class="btn btn-primary mx-auto" type="submit" style="margin-top: 20px;">Submit</button>
                                         </div>
 		                   </form>
@@ -812,7 +812,7 @@
                                     <form class="d-flex" action="query11.php" method="post">
                                         <div class="form-row">
                                                 <label for="input2">Show me all states that have had less than ... murders in a year.</label>
-                                        	<input class="form-control form-control-sm flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="input2" type="text" name="11_num" placeholder="Enter a number..."/>
+                                        	<input class="form-control form-control-sm flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="input2" type="text" name="11_num" minlength="3" placeholder="Enter a number..."/>
 						<button class="btn btn-primary mx-auto" type="submit" style="margin-top: 20px;">Submit</button>
 					</div>
 		                            </form>
@@ -831,7 +831,7 @@
                                     <form class="d-flex" action="query12.php" method="post">
                                         <div class="form-row">
                                                 <label for="input2">Show me all unsolved murders where the victim was ... years old. </label>
-                                        	<input class="form-control form-control-sm flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="input2" type="text" name="12_num" placeholder="Enter a number..."/>
+                                        	<input class="form-control form-control-sm flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="input2" type="text" name="12_num" maxlength="3" placeholder="Enter a number..."/>
 						<button class="btn btn-primary mx-auto" type="submit" style="margin-top: 20px;">Submit</button>
 					</div>
 		                            </form>

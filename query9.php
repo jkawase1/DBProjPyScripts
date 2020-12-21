@@ -55,12 +55,8 @@
  echo "<hr class=\"my-4\" />";
  
 
+ if ($mysqli->multi_query("CALL MurderByWeapon('".$Weapon."');")) {
 
-
- if ($mysqli->multi_query("CALL MurdersByWeapon('".$Weapon."')\g")) {
-
-         echo "<h2>Hi</h2>\n";
-         echo "<h1>weeoh</h1>";
      if ($result = $mysqli->store_result()) {
 	if (mysqli_num_rows($result) != 0) {
 		echo "<div style=\"height: 400px; overflow:auto;\">\n";
