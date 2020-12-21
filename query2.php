@@ -57,11 +57,15 @@ echo "<hr class=\"my-4\" />";
 
 if ($mysqli->multi_query("CALL LowestClearanceRateByYear(".$Year.");")) {
     if ($result = $mysqli->store_result()) {
-	//printf("%s\n", $result);
-        while ($myrow = $result->fetch_row()) {
-                printf("%s\n", $myrow[0]);
+        echo "<div style=\"height: 400px; overflow:auto;\">\n";
+          echo "<table border=1>\n";
+          echo "<tr><td><b>County</b></td><td><b>Clearance Rate</b></td></tr>\n";
+	while ($myrow = $result->fetch_row()) {
+                printf("<tr><td>%s</td><td>%.2f</td></tr>\n", $myrow[0], $myrow[1]);
             }
         }
+	echo "</table>\n";
+ 	 echo "</div>";
         $result->close();
     }
 ?>
